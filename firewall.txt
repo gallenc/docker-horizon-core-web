@@ -1,0 +1,33 @@
+# Note do this if problems with docker after iptables changed
+# sudo ip link delete docker0
+# sudo systemctl restart docker
+
+# nginx web server
+sudo firewall-cmd --zone=public --add-port=80/tcp
+
+#opennms
+sudo firewall-cmd --zone=public --add-port=8980/tcp
+sudo firewall-cmd --zone=public --add-port=162/udp
+
+#opennms karaf
+sudo firewall-cmd --zone=public --add-port=8101/tcp
+
+#glassfish admin
+sudo firewall-cmd --zone=public --add-port=8181/tcp
+
+#glassfish
+sudo firewall-cmd --zone=public --add-port=8080/tcp
+
+# elastic proxy nginx
+sudo firewall-cmd --zone=public --add-port=19200/tcp
+
+# kibana proxy nginx
+sudo firewall-cmd --zone=public --add-port=15601/tcp
+
+# grafana
+sudo firewall-cmd --zone=public --add-port=3000/tcp
+
+# pris proxy nginx
+sudo firewall-cmd --zone=public --add-port=18000/tcp
+
+sudo firewall-cmd --list-ports

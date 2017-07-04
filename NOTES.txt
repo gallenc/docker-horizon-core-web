@@ -1,0 +1,65 @@
+docker run -it --rm  --network app-tier     bitnami/cassandra:3.10-r7 cqlsh --username cassandra --password cassandra-server cassandra
+
+opening a terminal
+docker exec -it dockerhorizoncoreweb_cassandra_1  bash
+
+connecting to cassandra
+ cqlsh -u cassandra  -p cassandra1234
+ 
+docker exec -it dockerhorizoncoreweb_opennms_1  bash
+
+jmx cassandra JMX-Cassandra 7199
+
+
+commands tried
+
+
+
+docker-compose up -d
+docker images
+docker ps -a
+docker ps
+docker-compose ps
+docker-compose stop
+docker-compose down
+docker-compose ps
+  
+  869  git clone https://github.com/opennms-forge/docker-horizon-core-web.git
+  870  cd docker-horizon-core-web/  
+
+
+  965  git checkout -b release/20.0.0-1 origin/release/20.0.0-1
+  966  git status
+  967  git pull
+  968  ls
+  969  nano docker-compose.yml
+  970  docker-compose up -d
+
+  974  docker ps -a
+  975  docker ps
+
+  993   docker-compose   -f  opennms-grafana-pris.yml up -d
+  994  ifconfig
+  995  top
+  996  docker-compose top
+  997   docker-compose   -f  opennms-grafana-pris.yml stop
+  998  cp opennms-grafana-pris.yml opennms-grafana-pris-cassandra.yml
+  999   nano   opennms-grafana-pris-cassandra.yml
+ 1000  docker run --name cassandra bitnami/cassandra:latest
+
+ 1014  nano .cassandra.env
+ 1015  nano opennms-grafana-pris-cassandra.yml
+ 1016  rm opennms-grafana-pris-cassandra.yml
+ 
+ 1022   nano opennms-grafana-pris-cassandra.yml
+ 1023   docker-compose   -f  opennms-grafana-pris-cassandra.yml up -d
+
+ 1032  docker ps
+ 1033  docker exec -it dockerhorizoncoreweb_opennms_1  bash
+ 1034  docker ps
+ 1035  docker-compose   -f  opennms-grafana-pris-cassandra.yml up -d
+
+ 1044  docker-compose -f opennms-grafana-pris-cassandra.yml exec  grafana grafana-cli plugins install opennms-datasource
+ 1045  docker-compose -f opennms-grafana-pris-cassandra.yml restart grafana
+ 1046  docker ps
+
