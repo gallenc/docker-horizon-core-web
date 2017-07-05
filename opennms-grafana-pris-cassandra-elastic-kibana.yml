@@ -49,6 +49,8 @@ services:
     image: opennms/pris:1.1.5
     ports:
       - "8000:8000"
+    volumes:
+      - ./pris-requisitions:/opt/opennms-pris/requisitions
       
   grafana:
     image: grafana/grafana:4.1.1
