@@ -20,7 +20,7 @@ services:
         - /var/log/opennms
         - /var/opennms/rrd
         - /var/opennms/reports
-        - /opt/opennms/etc
+       # - /opt/opennms/etc
   opennms:
     image: opennms/horizon-core-web:20.0.0-1
     env_file:
@@ -33,6 +33,8 @@ services:
       - elasticsearch
     volumes_from:
       - opennms_data:rw
+    volumes:
+      - ./opennms-etc:/opt/opennms/etc
     command: ["-s"]
     ports:
       - "8980:8980"
