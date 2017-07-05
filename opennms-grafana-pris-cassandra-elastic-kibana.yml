@@ -3,7 +3,7 @@ services:
   db_data:
     image: tianon/true
     volumes:
-        - /var/lib/postgresql/data
+        - ./postgres-data:/var/lib/postgresql/data
   database:
     image: postgres:9.6.1
     env_file:
@@ -58,30 +58,51 @@ services:
       - .grafana.env
     ports:
       - "3000:3000"
-      
+
+# see https://hub.docker.com/r/_/cassandra/      
+# see https://github.com/JasonGiedymin/docker-cassandra-cluster
+
   cassandra_data:
     image: tianon/true
     volumes:
-        - /bitnami/cassandra
-        
+       - ./cassandra-data:/var/lib/cassandra
+       
   cassandra:
-      image: bitnami/cassandra:3.10-r7
-      volumes_from:
-        -  cassandra_data:rw
-      env_file:
-         - .cassandra.env
-      ports:
-        - "7000:7000"
-        - "7001:7001"
-        - "9042:9042"
-        - "9160:9160"
-        - "7199:7199"
+    image: cassandra:3.10
+    command: /bin/bash -c "sleep 1 && echo ' -- Pausing to let system catch up ... -->' && /docker-entrypoint.sh cassandra -f"
+    volumes_from:
+       -  cassandra_data:rw
+    ports:
+       - "7000:7000"
+       - "7001:7001"
+       - "9042:9042"
+       - "9160:9160"
+       - "7199:7199"
+
+# bitnami
+#  cassandra_data:
+#    image: tianon/true
+#    volumes:
+#        - /bitnami/cassandra
+#        
+#  cassandra:
+#      image: bitnami/cassandra:3.10-r7
+#      volumes_from:
+#        -  cassandra_data:rw
+#      env_file:
+#         - .cassandra.env
+#      ports:
+#        - "7000:7000"
+#        - "7001:7001"
+#        - "9042:9042"
+#        - "9160:9160"
+#        - "7199:7199"
         
 
   elastic_data: 
       image: tianon/true
       volumes:
-      - /bitnami/elasticsearch
+      - ./elastic-data:/bitnami/elasticsearch
       
   elasticsearch:
       image: bitnami/elasticsearch:2.4.4-r2
@@ -96,7 +117,7 @@ services:
   kibana_data: 
       image: tianon/true
       volumes:
-      - /bitnami/kibana
+      - ./kibana-data:/bitnami/kibana
       
   kibana:
     image: 'bitnami/kibana:4.6.4-r1'
