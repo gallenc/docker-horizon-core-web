@@ -5,4 +5,5 @@ opennms-etc
 elastic-data
 kibana-data
 postgres-data
+cassandra-data
 .settings
