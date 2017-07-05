@@ -107,7 +107,8 @@ services:
       - ./elastic-data:/bitnami/elasticsearch
       
   elasticsearch:
-      image: bitnami/elasticsearch:5.4.3-r1
+     # image: bitnami/elasticsearch:5.4.3-r1 # needs much more memory 2g
+      image: bitnami/elasticsearch:2.4.4-r2
       env_file:
       - .elastic.env
       ports:
