@@ -144,16 +144,18 @@ services:
       - ./nginx-conf/passwords:/bitnami/nginx/conf/passwords
       - ./nginx-conf/app:/app
       
-#  kibana:
-#    image: 'bitnami/kibana:4.6.4-r1'
-#    ports:
-#      - 5601:5601
-#    environment:
- #     - KIBANA_ELASTICSEARCH_URL=139.162.227.142
-#      - LOCAL_AUTH_LOGINS=admin:password,foo:bar
-#    volumes_from:
-#      - kibana_data:rw
-#    command: ["/app-entrypoint.sh","nami","start","--foreground","kibana"]
- 
+minion:
+    image: opennms/minion:20.0.0-1
+    env_file:
+      - .minion.env
+    volumes:
+        - /opt/minion/etc
+        - /opt/minion/data
+    command: ["-f"]
+    ports:
+      - "8201:8201"
+      - "18980:18980"
+      - "1162:162/udp"
+      - "11514:514/udp"
       
      
