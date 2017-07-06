@@ -6,4 +6,5 @@ elastic-data
 kibana-data
 postgres-data
 cassandra-data
+minion-data
 .settings
