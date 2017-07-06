@@ -149,13 +149,13 @@ services:
     env_file:
       - .minion.env
     volumes:
-        - /opt/minion/etc
+        - ./minion-data/etc:/opt/minion/etc
         - /opt/minion/data
     command: ["-f"]
     ports:
       - "8201:8201"
       - "28980:18980" # avoid duplicate with opennms
-      - "1162:162/udp"
-      - "11514:514/udp"
+      - "1162:162/udp" # snmp trap receiver
+      - "11514:514/udp" # logs
       
      
