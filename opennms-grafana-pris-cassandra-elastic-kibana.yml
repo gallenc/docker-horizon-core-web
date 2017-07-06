@@ -154,7 +154,7 @@ services:
     command: ["-f"]
     ports:
       - "8201:8201"
-      - "18980:18980"
+      - "28980:18980" # avoid duplicate with opennms
       - "1162:162/udp"
       - "11514:514/udp"
       
