@@ -144,7 +144,7 @@ services:
       - ./nginx-conf/passwords:/bitnami/nginx/conf/passwords
       - ./nginx-conf/app:/app
       
-minion:
+  minion:
     image: opennms/minion:20.0.0-1
     env_file:
       - .minion.env
