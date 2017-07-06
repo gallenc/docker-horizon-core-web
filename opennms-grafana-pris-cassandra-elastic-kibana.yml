@@ -149,8 +149,10 @@ services:
     env_file:
       - .minion.env
     volumes:
-        - ./minion-data/etc:/opt/minion/etc
+        - /opt/minion/etc
         - /opt/minion/data
+        # default credentials contains opennms.http minion minion and opennms.broker minion minion
+        - ./minion-conf/minion.minion.scv.jce:/opt/minion/etc/scv.jce
     command: ["-f"]
     ports:
       - "8201:8201"
