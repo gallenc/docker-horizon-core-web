@@ -160,13 +160,25 @@ services:
       - "1162:162/udp" # snmp trap receiver
       - "11514:514/udp" # logs
       
-    # used by opennms dns provisionere to find all containers :)
-  dockerdns:
-    image: bfoote/docker-dns:0.2.6
+# used  to find all containers :)
+#  dockerdns:
+#    image: bfoote/docker-dns:0.2.6
+#    volumes:
+#      - ./dockerdns-conf/config.js.opennms:/opt/docker-dns/config/config.js
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    command: ["supervisord", "-n"]
+#    ports: 
+#      - "10053:53/udp"
+
+  devdns:
+    image: ruudud/devdns:latest
     volumes:
-      - ./dockerdns-conf/config.js.opennms:/opt/docker-dns/config/config.js
       - /var/run/docker.sock:/var/run/docker.sock
-    command: ["supervisord", "-n"]
     ports: 
       - "10053:53/udp"
+
+
+
+
+
      
