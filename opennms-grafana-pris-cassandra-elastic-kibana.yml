@@ -176,6 +176,7 @@ services:
     env_file:
       - .devdns.env
     volumes:
+      - ./devdns-conf/config.js.opennms:/opt/docker-dns/config/config.js
       - /var/run/docker.sock:/var/run/docker.sock
     ports: 
       - "10053:53/udp"
