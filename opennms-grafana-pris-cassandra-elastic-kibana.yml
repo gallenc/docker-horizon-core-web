@@ -170,8 +170,11 @@ services:
 #    ports: 
 #      - "10053:53/udp"
 
+
   devdns:
     image: ruudud/devdns:latest
+    env_file:
+      - .devdns.env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports: 
