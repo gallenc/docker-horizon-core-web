@@ -164,7 +164,7 @@ services:
   dockerdns:
     image: bfoote/docker-dns:0.2.6
     volumes:
-      - ./dockerdns-conf/config.js.opennms:/opt/docker-dns/config.js
+      - ./dockerdns-conf/config.js.opennms:/opt/docker-dns/config/config.js
     command: ["supervisord", "-n"]
     ports: 
       - "10053:53/udp"
