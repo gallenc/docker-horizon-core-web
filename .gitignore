@@ -6,5 +6,7 @@ elastic-data
 kibana-data
 postgres-data
 cassandra-data
+grafana-data
+grafana-plugins
 minion-data
 .settings
