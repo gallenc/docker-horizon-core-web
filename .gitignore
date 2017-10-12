@@ -2,6 +2,8 @@
 *.iml
 /.project
 opennms-etc
+opennms-deploy
+opennms-logs
 elastic-data
 kibana-data
 postgres-data
