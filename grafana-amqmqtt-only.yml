@@ -1,0 +1,54 @@
+version: '2'
+services:
+      
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:4.1.1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./grafana-data:/var/lib/grafana
+      - ./grafana-plugins:/var/lib/grafana/plugins
+    env_file:
+      - .grafana.env
+    ports:
+      - "3000:3000"
+
+
+ # KARAF 1 IS ACTIVE MQ / MQTT BROKER
+  # from https://hub.docker.com/r/mkroli/karaf/
+  karaf1:
+      container_name: karaf1
+      image: mkroli/karaf:4.0 # 4.1 docker image broken
+      container_name: karaf1
+      ports:
+        - "11099:1099"
+        - "14444:44444"
+        - "18101:8101" # ssh consol
+        - "18181:8181" # web consol
+        - "1883:1883"  # active mq mqtt
+      volumes:
+        - ./karaf1/karaf-deploy:/deploy
+        - ./karaf1/karaf-log:/opt/karaf/data/log
+        - ./karaf1/karaf-config/org.ops4j.pax.logging.cfg:/opt/karaf/etc/org.ops4j.pax.logging.cfg
+        - ./karaf1/karaf-config/org.ops4j.pax.url.mvn.cfg:/opt/karaf/etc/org.ops4j.pax.url.mvn.cfg
+        - ./karaf1/karaf-config/activemq.xml:/opt/karaf/etc/activemq.xml
+        - ./karaf1/karaf-config/users.properties:/opt/karaf/etc/users.properties
+        - ./karaf1/karaf-config/org.apache.karaf.features.cfg:/opt/karaf/etc/org.apache.karaf.features.cfg        
+      #  - ./karaf-etc:/opt/karaf/etc
+      #  - ./karaf-data:/opt/karaf/data
+      # restart: always
+      env_file:
+        - karaf1/.karaf.env
+#      networks:
+#        - opennms-airwatch-network
+      entrypoint: /opt/karaf/bin/karaf
+
+
+
+
+     
+
+
+
+
+     
